@@ -28,9 +28,17 @@ jobs:
 
       - name: 릴리스 검사 (C1~C6)
         run: |
+          set -e
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            git fetch origin ${{ github.base_ref }} --depth=0
-            python scripts/check_release.py --base origin/${{ github.base_ref }}
+            # checkout이 fetch-depth: 0으로 전체 이력을 받아 두었지만,
+            # PR에서는 base 브랜치의 원격추적 ref가 없을 수 있으므로 명시적으로 만든다.
+            # ⚠️ `--depth=0`은 git이 거부한다(fatal: depth 0 is not a positive number).
+            #    전체 이력이 필요하면 --unshallow이거나, 이미 깊은 저장소면 옵션 자체가 불필요하다.
+            git fetch --no-tags --prune origin \
+              "+refs/heads/${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}"
+            # base가 실제로 해석되는지 먼저 확인한다. 못 찾으면 C2가 조용히 건너뛰어진다.
+            git rev-parse --verify "origin/${{ github.base_ref }}" >/dev/null
+            python scripts/check_release.py --base "origin/${{ github.base_ref }}"
           else
             python scripts/check_release.py
           fi

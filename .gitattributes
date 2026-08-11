@@ -1,2 +1,10 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# 줄바꿈은 **작업트리에서도 LF로 고정**한다.
+#
+# 이유: 스킬 무결성 검증(Phase 0·C1)은 파일의 바이트를 SHA-256으로 해시한다.
+# `text=auto`만 두면 Windows에서 체크아웃할 때 CRLF로 변환되어(Git for Windows 기본값
+# core.autocrlf=true), 저장소 blob은 LF인데 작업트리는 CRLF가 된다.
+# git status는 정규화 때문에 「변경 없음」으로 보이지만 해시는 전부 어긋나 —
+# **검증이 전 파일을 「변조」로 오탐한다.** 실제로 2026-08-11에 2개 파일에서 발생했다.
+#
+# eol=lf를 붙이면 어느 OS에서 클론하든 작업트리가 LF로 유지되어 해시가 일치한다.
+* text=auto eol=lf
