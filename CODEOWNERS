@@ -1,0 +1,19 @@
+# TP 스킬 저장소 소유자
+#
+# ⚠️ @OWNER 를 실제 GitHub 계정으로 바꿔야 작동합니다.
+#    조직 계정이면 @조직명/팀명 형태도 됩니다.
+#
+# 이 파일이 있어도 브랜치 보호 설정에서
+#   Settings → Branches → main → "Require review from Code Owners"
+# 를 켜야 실제로 승인이 강제됩니다.
+
+# 기본 — 저장소 전체
+*                       @OWNER
+
+# 스킬 본문·참조문서 — 규율이 담긴 곳. 변경 시 반드시 승인
+/skills/                @OWNER
+
+# 검증 장치 — 여기가 뚫리면 나머지 검사가 무의미해진다
+/scripts/               @OWNER
+/.github/workflows/     @OWNER
+/build_plugins.py       @OWNER

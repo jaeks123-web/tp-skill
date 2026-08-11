@@ -1,0 +1,17 @@
+# tp-case-law 무결성 매니페스트
+# 확정일: 2026-08-11
+# 경로 기준: 스킬 루트 (<루트>/tp-case-law/...)
+# 사용: 스킬 폴더에서  python3 scripts/verify_skills.py
+#
+# ⚠️ 매니페스트 자체는 대상에 포함되지 않는다. 함께 변조되면 검증은 통과한다.
+# ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
+# ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
+#
+4ba66775d37818aeb5f33134a5b8de21bd7da88c61994f9814d2428178c672f6  tp-case-law/SKILL.md
+66e56bcfa3f6cf6edb59479f6d96032f6d6219b06a2f3ae4eaf89b05e07263a9  tp-case-law/references/country-cases.md
+b6a8958c26c9d4dbe22712670ffdba7afc771cd5aa1c97dd149c5d5a4ccc0fb4  tp-case-law/references/country-rules.md
+b6a6be6ca125881a5feed4c071a3dee8668d3a13bb1e9e582e69f47fef096c53  tp-case-law/references/korea-cases.md
+0a32e60df4e446dfc6d339ee654ead093fba24ccb34d0b4c9385628eb76e6047  tp-case-law/references/korea-regulations.md
+2f10e06378caa54e43c3669112c77d625f4d42c687c529b9c606c28d3146e14d  tp-case-law/references/methods.md
+4f87735fe1d8d797d549cf99514ab3a2450bcfc06f311d1c30e920ef06a374a1  tp-case-law/references/oecd-guidelines.md
+d73f847843f33dd44885d999f156e6f333b79a0f95a1f8dcebbb5a2d6d7fcea9  tp-case-law/scripts/verify_skills.py

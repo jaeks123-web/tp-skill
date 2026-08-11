@@ -1,0 +1,72 @@
+name: TP 스킬 검사
+
+# 무엇을 막는가
+#   - 내용을 고치고 매니페스트를 다시 산출하지 않은 채 병합되는 것 (C1)
+#   - 개정 이력 없이 스킬이 바뀌는 것 (C2) — 배포보호 메모 2층의 핵심 요구
+#   - 자리표시자 사건번호가 다시 들어오는 것 (C3)
+#   - 플러그인 업로드 단계에서야 발견될 이름·frontmatter 오류 (C4·C5)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # C2는 base와 비교하므로 전체 이력이 필요하다
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 릴리스 검사 (C1~C6)
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin ${{ github.base_ref }} --depth=0
+            python scripts/check_release.py --base origin/${{ github.base_ref }}
+          else
+            python scripts/check_release.py
+          fi
+
+      - name: 플러그인 생성 시험
+        run: python build_plugins.py single
+
+      - name: 분할 생성 시험
+        run: python build_plugins.py split
+
+  release:
+    # 태그를 붙였을 때만 배포본을 만든다. main 병합만으로는 배포되지 않는다.
+    needs: verify
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 배포본 생성
+        run: |
+          python build_plugins.py single
+          python build_plugins.py split
+
+      - name: 동결 매니페스트 산출
+        run: |
+          cd skills
+          find . -type f \( -name '*.md' -o -name '*.py' -o -name 'MANIFEST.sha256' \) \
+            | sed 's|^\./||' | sort | xargs sha256sum > ../dist/MANIFEST_frozen.sha256
+          wc -l < ../dist/MANIFEST_frozen.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tp-skills-${{ github.ref_name }}
+          path: |
+            dist/*.plugin
+            dist/MANIFEST_frozen.sha256
