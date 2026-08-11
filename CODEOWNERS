@@ -8,12 +8,12 @@
 # 를 켜야 실제로 승인이 강제됩니다.
 
 # 기본 — 저장소 전체
-*                       @OWNER
+*                       @jaeks123-web
 
 # 스킬 본문·참조문서 — 규율이 담긴 곳. 변경 시 반드시 승인
-/skills/                @OWNER
+/skills/                @jaeks123-web
 
 # 검증 장치 — 여기가 뚫리면 나머지 검사가 무의미해진다
-/scripts/               @OWNER
-/.github/workflows/     @OWNER
-/build_plugins.py       @OWNER
+/scripts/              @jaeks123-web
+/.github/workflows/    @jaeks123-web
+/build_plugins.py      @jaeks123-web
