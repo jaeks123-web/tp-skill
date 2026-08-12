@@ -7,5 +7,5 @@
 # ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
 # ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
 #
-016f1480c64cbcc2373a03f5ced6042c65d3b087141a7dd504aa0f853ea2760f  comparable-search-review/SKILL.md
+41697d30f41fa51a9a6364841bef47b4cff1b9f4b5fec4ee79f7145b09346609  comparable-search-review/SKILL.md
 52f682add2dc969dac256a0b90ab6ff8acbb2714d8a2b234bedee95d3f60657b  comparable-search-review/scripts/verify_skills.py
