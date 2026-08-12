@@ -36,6 +36,17 @@ import hashlib
 import os
 import sys
 
+# 출력 인코딩 고정 — 비UTF-8 로케일(한국어 Windows cp949 등)에서 파이프로 출력할 때
+# 크래시하지 않게 한다. 실제 사고(2026-08-12): 「판정: 합격 — 전건 일치」의 em dash(U+2014)가
+# cp949에 없어 UnicodeEncodeError로 종료 코드 1이 되었고, check_release.py가 이를 무결성
+# 실패로 해석해 **13종 전부를 C1 불합격으로 오탐**했다. 콘솔 직접 출력은 UTF-16 경로라
+# 문제가 없어 재현이 늦었다.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:  # Python 3.6 이하 등
+    pass
+
 MANIFEST_DEFAULT = "MANIFEST.sha256"
 
 

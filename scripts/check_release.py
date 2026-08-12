@@ -28,6 +28,14 @@ import re
 import subprocess
 import sys
 
+# 출력 인코딩 고정 — 비UTF-8 로케일(한국어 Windows cp949 등)에서 결과를 파일·파이프로
+# 넘길 때 「⚠」·em dash가 UnicodeEncodeError를 일으켜 검사 자체가 죽는 것을 막는다.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKILLS = os.path.join(ROOT, "skills")
 NAME_RE = re.compile(r"^[a-z0-9-]+$")
@@ -43,7 +51,8 @@ def fail(code, msg):
 
 
 def git(*args, ok=(0,)):
-    r = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True)
+    r = subprocess.run(["git", *args], cwd=ROOT, capture_output=True,
+                       text=True, encoding="utf-8", errors="replace")
     return r.stdout if r.returncode in ok else None
 
 
@@ -90,8 +99,11 @@ def check_skill(name):
     elif not os.path.isfile(os.path.join(d, "scripts", "MANIFEST.sha256")):
         fail("C1", f"{name}: scripts/MANIFEST.sha256 없음")
     else:
+        # encoding 고정 — 자식은 UTF-8로 출력한다(verify_skills.py 상단 reconfigure).
+        # 로케일 기본값으로 디코딩하면 한국어 Windows에서 실패 메시지가 깨진다.
         r = subprocess.run([sys.executable, "scripts/verify_skills.py"],
-                           cwd=d, capture_output=True, text=True)
+                           cwd=d, capture_output=True,
+                           text=True, encoding="utf-8", errors="replace")
         if r.returncode != 0:
             last = (r.stdout or r.stderr).strip().splitlines()
             fail("C1", f"{name}: 무결성 불합격 — {last[-1] if last else '실행 실패'}"
