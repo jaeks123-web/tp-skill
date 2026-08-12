@@ -61,9 +61,24 @@ jobs:
           python-version: '3.11'
 
       - name: 배포본 생성
+        # plugin.json의 version은 **태그 이름에서 온다.** build_plugins.py가 git describe로
+        # 추론할 수도 있으나, 이 job의 checkout은 fetch-depth 기본값(1)이어서 태그 해석이
+        # 환경에 의존한다. 태그 이름을 직접 넘겨 결정적으로 만든다.
+        # 계기: v1.2.0 배포본의 plugin.json이 `1.0.0`으로 남아 있었다(2026-08-12 S5에서 발견).
+        env:
+          TP_PLUGIN_VERSION: ${{ github.ref_name }}
         run: |
           python build_plugins.py single
           python build_plugins.py split
+          python - <<'PY'
+          import json, glob, os
+          want = os.environ["TP_PLUGIN_VERSION"].lstrip("v")
+          for p in glob.glob("dist/*/.claude-plugin/plugin.json"):
+              got = json.load(open(p, encoding="utf-8"))["version"]
+              print(f"{p}: version={got}")
+              assert got == want, f"plugin.json version={got} != 태그 {want}"
+          print(f"plugin.json version 전건 = {want}")
+          PY
 
       - name: 동결 매니페스트 산출
         run: |

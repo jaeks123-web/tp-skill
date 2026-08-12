@@ -35,8 +35,40 @@ SRC = os.path.join(HERE, "skills")
 OUT = os.path.join(HERE, "dist")
 # ⚠️ 플러그인 이름은 **소문자·숫자·하이픈만** 허용된다(대문자·한글·공백 불가).
 #    설명(description)에는 한글을 써도 된다.
-VERSION = "1.0.0"
 AUTHOR = "Lim TP Technology"
+
+
+def _version():
+    """플러그인 version은 **git 태그에서 끌어온다.**
+
+    상수로 박아 두면 릴리스마다 손으로 올려야 하고, 잊으면 조용히 어긋난다 —
+    실제로 v1.2.0 배포본의 plugin.json이 `1.0.0`으로 남아 있었고, 설치 검증(S5,
+    2026-08-12)에서야 발견됐다. 검사 항목이 아니어서 CI도 잡지 못했다.
+
+    우선순위
+      1. 환경변수 `TP_PLUGIN_VERSION` (수동 지정·시험용)
+      2. `git describe --tags --abbrev=0`에서 앞의 `v` 제거
+      3. 태그를 찾을 수 없으면 `0.0.0` — **경고를 출력한다.** 조용히 그럴듯한
+         번호를 만들어 내면 첫 번째 실수를 반복하는 것이다.
+    """
+    v = os.environ.get("TP_PLUGIN_VERSION")
+    if v:
+        return v.lstrip("v")
+    try:
+        v = subprocess.run(["git", "describe", "--tags", "--abbrev=0"],
+                           cwd=HERE, capture_output=True, text=True, check=True
+                           ).stdout.strip()
+        if v:
+            return v.lstrip("v")
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        pass
+    print("경고: git 태그를 찾을 수 없어 version을 0.0.0으로 둔다. "
+          "릴리스라면 태그를 먼저 만들거나 TP_PLUGIN_VERSION을 지정할 것.",
+          file=sys.stderr)
+    return "0.0.0"
+
+
+VERSION = _version()
 
 
 def classify(names):
