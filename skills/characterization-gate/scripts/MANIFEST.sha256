@@ -1,5 +1,5 @@
 # characterization-gate 무결성 매니페스트
-# 확정일: 2026-08-12
+# 확정일: 2026-09-01
 # 경로 기준: 스킬 루트 (<루트>/characterization-gate/...)
 # 사용: 스킬 폴더에서  python3 scripts/verify_skills.py
 #
@@ -7,5 +7,5 @@
 # ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
 # ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
 #
-4c0b619fc0e4b4212625fa09fcc7a1b587cc9795e8162ee99543e66ae7c116fa  characterization-gate/SKILL.md
+554b3bf0e412cbf049949fed5fdf870bc8faecd6d0985b06c9e3de26d5abe176  characterization-gate/SKILL.md
 52f682add2dc969dac256a0b90ab6ff8acbb2714d8a2b234bedee95d3f60657b  characterization-gate/scripts/verify_skills.py

@@ -1,5 +1,5 @@
 # profitability-analysis 무결성 매니페스트
-# 확정일: 2026-08-28
+# 확정일: 2026-09-01
 # 경로 기준: 스킬 루트 (<루트>/profitability-analysis/...)
 # 사용: 스킬 폴더에서  python3 scripts/verify_skills.py
 #
