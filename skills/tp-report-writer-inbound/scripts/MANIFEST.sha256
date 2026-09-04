@@ -1,5 +1,5 @@
 # tp-report-writer-inbound 무결성 매니페스트
-# 확정일: 2026-09-01
+# 확정일: 2026-09-04
 # 경로 기준: 스킬 루트 (<루트>/tp-report-writer-inbound/...)
 # 사용: 스킬 폴더에서  python3 scripts/verify_skills.py
 #
@@ -7,5 +7,5 @@
 # ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
 # ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
 #
-f41f82d807ca5c9f65aef46f5a01e1cdf0057bf901567b929d8b7e2cdc5519d2  tp-report-writer-inbound/SKILL.md
+493777071ba5f805bff329dc6d7dc02002e48b83b48581806260e3ebb03ff665  tp-report-writer-inbound/SKILL.md
 52f682add2dc969dac256a0b90ab6ff8acbb2714d8a2b234bedee95d3f60657b  tp-report-writer-inbound/scripts/verify_skills.py
