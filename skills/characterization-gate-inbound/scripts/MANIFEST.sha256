@@ -7,5 +7,5 @@
 # ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
 # ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
 #
-04d6e7f3a5958120787d6bb450c52819e36e16fe1aaca8135d00244a515e6fa4  characterization-gate-inbound/SKILL.md
+0e11f6bd23b54ce7eb541b16b00ecb0f0d8fee360e78b9915cb740ea1a7ac576  characterization-gate-inbound/SKILL.md
 52f682add2dc969dac256a0b90ab6ff8acbb2714d8a2b234bedee95d3f60657b  characterization-gate-inbound/scripts/verify_skills.py

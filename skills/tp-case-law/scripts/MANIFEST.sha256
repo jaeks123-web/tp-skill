@@ -1,5 +1,5 @@
 # tp-case-law 무결성 매니페스트
-# 확정일: 2026-09-01
+# 확정일: 2026-09-04
 # 경로 기준: 스킬 루트 (<루트>/tp-case-law/...)
 # 사용: 스킬 폴더에서  python3 scripts/verify_skills.py
 #
@@ -7,7 +7,7 @@
 # ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
 # ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
 #
-d258b547153098e485f67b88abc97cbb09da67ba09517d433cd94c8ebfef9261  tp-case-law/SKILL.md
+3498595242e581878243b255d22669f58abaaf39f264ffa2836516c671aed743  tp-case-law/SKILL.md
 66e56bcfa3f6cf6edb59479f6d96032f6d6219b06a2f3ae4eaf89b05e07263a9  tp-case-law/references/country-cases.md
 b6a8958c26c9d4dbe22712670ffdba7afc771cd5aa1c97dd149c5d5a4ccc0fb4  tp-case-law/references/country-rules.md
 b6a6be6ca125881a5feed4c071a3dee8668d3a13bb1e9e582e69f47fef096c53  tp-case-law/references/korea-cases.md
