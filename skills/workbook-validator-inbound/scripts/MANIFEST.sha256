@@ -1,5 +1,5 @@
 # workbook-validator-inbound 무결성 매니페스트
-# 확정일: 2026-09-04
+# 확정일: 2026-09-11
 # 경로 기준: 스킬 루트 (<루트>/workbook-validator-inbound/...)
 # 사용: 스킬 폴더에서  python3 scripts/verify_skills.py
 #
@@ -7,5 +7,7 @@
 # ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
 # ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
 #
-d25ae06f7fe1503c61484ad4a5368aafc204368197f451e2fc13c364e378b5e1  workbook-validator-inbound/SKILL.md
+2ec13b8427fb997e726189333dfb92bffe2a34f4f5af9d80ec18699b727dbc5a  workbook-validator-inbound/SKILL.md
+4039031d50261ea181c26d1a8ff83b4fffbac5a357bea7d2fe82567013271ddc  workbook-validator-inbound/references/02_결정기록_템플릿.xlsx
+239f314f766b7b0c184460e85c4532bc6cb292d111a49ba27883f280f14c1e11  workbook-validator-inbound/references/02_결정기록_템플릿_사용안내.md
 52f682add2dc969dac256a0b90ab6ff8acbb2714d8a2b234bedee95d3f60657b  workbook-validator-inbound/scripts/verify_skills.py
