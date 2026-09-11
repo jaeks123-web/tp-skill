@@ -83,7 +83,7 @@ jobs:
       - name: 동결 매니페스트 산출
         run: |
           cd skills
-          find . -type f \( -name '*.md' -o -name '*.py' -o -name 'MANIFEST.sha256' \) \
+          find . -type f \( -name '*.md' -o -name '*.py' -o -name '*.xlsx' -o -name 'MANIFEST.sha256' \) \
             | sed 's|^\./||' | sort | xargs sha256sum > ../dist/MANIFEST_frozen.sha256
           wc -l < ../dist/MANIFEST_frozen.sha256
 

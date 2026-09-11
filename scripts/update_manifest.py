@@ -18,7 +18,11 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKILLS = os.path.join(ROOT, "skills")
-TARGET_EXT = (".md", ".py")
+# ⚠️ 동봉 자료(references/)의 이진 파일도 대상이다. v1.6.0에서 02 결정기록 양식(.xlsx)을
+#    동봉하면서 넣었다 — 빼 두면 배포본에는 들어가되 Phase 0·동결 매니페스트 어느 층도
+#    그 파일을 검증하지 못한다. 새 확장자를 동봉할 때는 여기와 .github/workflows/verify.yml의
+#    「동결 매니페스트 산출」 find 식을 **함께** 고친다.
+TARGET_EXT = (".md", ".py", ".xlsx")
 
 HEADER = """# {name} 무결성 매니페스트
 # 확정일: {date}

@@ -1,5 +1,5 @@
 # comparable-search-review 무결성 매니페스트
-# 확정일: 2026-09-04
+# 확정일: 2026-09-11
 # 경로 기준: 스킬 루트 (<루트>/comparable-search-review/...)
 # 사용: 스킬 폴더에서  python3 scripts/verify_skills.py
 #
@@ -7,5 +7,5 @@
 # ⚠️ 해시는 설치본 기준. frontmatter의 name에 따옴표를 넣지 않는다(설치 시 제거됨).
 # ⚠️ 이 파일은 scripts/update_manifest.py 로 생성한다. 손으로 만들지 않는다.
 #
-3bd0b99e98ce9bed6b1c1c4eb66784173e4334979cfb2a3fc9d82c82b1067194  comparable-search-review/SKILL.md
+dd91e17fb0c22fdf0a863b625746082425eabc3126111c9e922df7d75c8eb3ed  comparable-search-review/SKILL.md
 52f682add2dc969dac256a0b90ab6ff8acbb2714d8a2b234bedee95d3f60657b  comparable-search-review/scripts/verify_skills.py
